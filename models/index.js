@@ -6,13 +6,13 @@ const PayRoll = require("./payroll");
 const Rates = require("./rates");
 
 // Config
-const mongoURI = "mongodb://localhost:27017/learn";
+// const mongoURI = "mongodb://localhost:27017/learn";
+const mongoURI = process.env.MONGO_URL;
 const db = mongoose.connection;
 
 // Connect
-mongoose.connect(mongoURI, ()=>{
-    console.log("Connection to Mongo DB established.");
-    
+mongoose.connect(mongoURI, () => {
+  console.log("Connection to Mongo DB established.");
 });
 
 // Helpful events
@@ -22,5 +22,8 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Export models
 module.exports = {
-    Comedian, Show, PayRoll, Rates
-}
+  Comedian,
+  Show,
+  PayRoll,
+  Rates,
+};
